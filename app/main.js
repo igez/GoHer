@@ -4,7 +4,8 @@ angular
 .module('GoHer', [
 	'ui.router',
     'GoHer.Dashboard',
-    'GoHer.Order'
+    'GoHer.Order',
+    'GoHer.Food'
 ])
 
 // Config :: Route provider
@@ -18,13 +19,18 @@ angular
         })
         .state('root.dashboard', {
         	url 		: '/',
-            templateUrl : 'public/views/partials/dashboard.html',
+            templateUrl : 'public/views/partials/dashboard/index.html',
             controller  : 'DashboardController'
         })
         .state('root.order_index', {
         	url 		: '/orders',
-            templateUrl : 'public/views/partials/order.html',
+            templateUrl : 'public/views/partials/order/index.html',
             controller  : 'OrderController'
+        })
+        .state('root.food_index', {
+            url         : '/food-and-drink',
+            templateUrl : 'public/views/partials/food/index.html',
+            controller  : 'FoodController'
         })
 
     // $locationProvider.html5Mode(true);
