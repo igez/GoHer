@@ -1,0 +1,22 @@
+{
+  "name": "goher",
+  "version": "0.0.0",
+  "authors": [
+    "Robby Prima <robby@voxteneo.asia>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-ui-router": "~0.2.15",
+    "angular-ui-bootstrap": "~0.13.1",
+    "angular-ui-bootstrap-bower": "~0.13.1",
+    "bootstrap": "~3.3.5"
+  }
+}
