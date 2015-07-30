@@ -1,6 +1,23 @@
 {
-	"foods": [{
-		"name"	: "Sayur Bacem",
-		"price"	: 45000
-	}]
+	"foods": [
+		{
+			"sku"	: "food-sop-iga-bakar",
+			"name"	: "Sop Iga Bakar",
+			"price"	: 12500,
+			"image" : "http://assets-a2.kompasiana.com/statics/crawl/555e52470423bdb6758b4567.jpeg?t=o&v=760"
+		},
+		{
+			"sku"	: "food-ayam-bakar",
+			"name"	: "Ayam Bakar",
+			"price"	: 12000,
+			"image" : "http://3.bp.blogspot.com/-cCU4Qckbl40/U8_Q_9YtUGI/AAAAAAAACLk/6K875G8VkMk/s1600/Resep+Ayam+Bakar+-+Tersedap.jpg"
+		},
+		{
+			"sku"	: "food-ayam-goreng",
+			"name"	: "Ayam Goreng",
+			"price"	: 10000,
+			"image" : "http://rm-sotobetawi.tk/wp-content/uploads/2015/05/ayam-goreng-kuning.jpg"
+		}
+		
+	]
 }

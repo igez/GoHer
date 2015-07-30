@@ -9,6 +9,7 @@
 			$scope.results = result.foods;
 
 		});
+		$scope.orderProp = 'age';
 	}]);
 
 })();

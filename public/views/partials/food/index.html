@@ -1,9 +1,29 @@
+
+
 <div class="row">
-	<div class="col-xs-12">
-
-		<ul>
-			<li ng-repeat="(key, result) in results">{{ result.name }} ({{result.price}})</li>
-		</ul>
-
-	</div>
+<div class="col-sm-12 col-md-12">
+<form class="form-inline">
+	<div class="form-group">    
+    <input type="text" class="form-control" ng-model="query" id="exampleInputEmail2" placeholder="Search">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputName2">Sort By</label>
+    <select ng-model="orderProp" class="form-control">
+          <option value="name">Alphabetical</option>
+          <option value="price">Price</option>
+        </select>
+  </div>
+    
+</form>
+</div>
+  <div class="col-sm-6 col-md-4" ng-repeat="(key, result) in results | filter:query | orderBy:orderProp">
+    <div class="thumbnail">
+      <img src="/public/images/loader.gif" ng-src="{{result.image}}" alt="{{result.name}}">
+      <div class="caption">
+        <h3>{{ result.name }} </h3>       
+		<p>{{result.price}}</p>		
+        <p><a href="#" class="btn btn-primary" role="button" data-sku="{{resul.sku}}">Order</a></p>
+      </div>
+    </div>
+  </div>
 </div>
