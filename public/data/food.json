@@ -2,5 +2,8 @@
 	"foods": [{
 		"name"	: "Sayur Bacem",
 		"price"	: 45000
+	},{
+		"name"	: "Roti Kukus",
+		"price"	: 5000
 	}]
 }
