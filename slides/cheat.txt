@@ -1,0 +1,4 @@
+2 way data binding
+AngularJS' two-way data binding is its most notable feature, and it reduces the complexity of code; with relief to the server backend of templating responsibilities.
+Instead, templates are rendered in plain HTML according to data contained in a scope defined in the model.
+The $scope service in Angular detects changes to the model section and modifies HTML expressions in the view via a controller. Likewise, any alterations to the view are reflected in the model. This circumvents the need to actively manipulate the DOM and encourages bootstrapping and rapid prototyping of web applications.[8] AngularJS detects changes in models by comparing the current values with values stored earlier in a process of dirty-checking, unlike Ember.js and Backbone.js that trigger listeners when the model values are changed.

@@ -1,0 +1,43 @@
+.reveal section img.no-wrap {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+
+.live-example {
+	margin: 50px 0 !important;
+	text-align: center;
+}
+
+.live-example input {
+	color: #000;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.small {
+	font-size: 75% !important;
+}
+
+button {
+	color: #333;
+}
+
+.orange-wl {
+	background: #FE9E00;
+    background: -moz-radial-gradient(center, circle cover, #FE9E00 0%, #704600 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #FE9E00), color-stop(100%, #704600));
+    background: -webkit-radial-gradient(center, circle cover, #FE9E00 0%, #704600 100%);
+    background: -o-radial-gradient(center, circle cover, #FE9E00 0%, #704600 100%);
+    background: -ms-radial-gradient(center, circle cover, #FE9E00 0%, #704600 100%);
+    background: radial-gradient(center, circle cover, #FE9E00 0%, #704600 100%);
+    background-color: #704600;
+}
+
+.list {
+	font-size: 70%;
+	margin: 0 !important;
+}

@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en" data-ng-app="VT-Training">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+		<link rel="stylesheet" href="/bower_components/reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="/bower_components/reveal.js/css/theme/night.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="/bower_components/reveal.js/lib/css/zenburn.css">
+
+		<link rel="stylesheet" type="text/css" href="./css/custom.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '/bower_components/reveal.js/css/print/pdf.css' : '/bower_components/reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal orange-wl">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>AngularJS</h2>
+					<p>
+						<img width="30%" class="no-wrap" src="./img/angular_logo.png">
+					</p>
+					<p>The Super heroic JS MVW Framework</p>
+
+				</section>
+
+				<section class="text-left">
+					<h3>Philosophy</h3>
+				</section>
+
+				<section>
+					<h3>Wait, but aren't we have enough JS framework already ?</h3>
+
+					<p class="fragment fade-in text-center">
+						<img class="no-wrap" width="400px" src="./img/1206442.jpg">
+					</p>
+
+					<aside class="notes">
+						Ember, React, Backbone, Knockout and there any other framework out there that I can't even remember their name.
+						Each of them has different features and design patterns.
+						They have their on pros and cons.
+						Each of them claimed to be the holy-grail of JS framework.
+						Is AngularJS is the holy-grail of JS framework ?
+					</aside>
+				</section>
+
+				<section class="text-left">
+					<h3>Why AngularJS ?</h3>
+					<p>
+						<ul>
+							<li class="fragment fade-in">
+								Proper architectured and maintainable web applications.
+							</li>
+							<li class="fragment fade-in">
+								Decouple DOM manipulation from application logic.
+							</li>
+							<li class="fragment fade-in">
+								Decouple the client side of an app from the server side.
+							</li>
+							<li class="fragment fade-in">Teach the browser new syntax.</li>
+							<li class="fragment fade-in">Two-way data-binding helps us for the automatic synchronization between models and views.</li>
+						</ul>
+					</p>
+
+					<aside class="notes">
+						1. Lorem ipsum
+						2. This is the most important thing what angular could offers, to maintain application logic separate with DOM manipulation will provides a maintainable application as well as prevent hidden bugs, spagetti code as the application grows.
+						3. This allows development work to progress in parallel, and allows for reuse of both sides.
+						4. HTML is a great declarative language for static document, but it doesn't contains much way to create application.
+						5. there are no ng-repeat, ng-show syntax in HTML, but angular teachs browser how handle those syntax.
+						6. No need to create a custom event/data listeners like we used to do using jQuery, angular already handle it automatically.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h3>NG-APP</h3>
+
+						<pre><code data-trim contenteditable ng-non-bindable>
+&lt;!doctype html&gt;
+&lt;html ng-app &gt;
+    &lt;head&gt;
+        &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h3>Boostrapping</h3>
+
+						<p>Automatic initialization</p>
+						<pre><code data-trim contenteditable ng-non-bindable>
+<!-- index.html -->
+&lt;tag ng-app="App"&gt;&lt;/tag&gt;
+						</code></pre>
+						<pre><code data-trim contenteditable ng-non-bindable>
+<!-- app.js -->
+(function() {
+	angular.module('App', []);
+})();
+						</code></pre>
+						<p>Manual initialization</p>
+						<pre><code data-trim contenteditable ng-non-bindable>
+<!-- app.js -->
+(function() {
+	angular.module('App', []);
+	angular.bootstrap(document, ['App']);
+})();
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Modularity</h3>
+
+						<p>The framework is born to be modular.</p>
+						<p>Each ng-app is a module which depends on another module, whether its a service, factory, directive or the app config itself.</p>
+					</section>
+
+					<section>
+						<h3>Module Declaration</h3>
+
+						<pre><code data-trim contenteditable ng-non-bindable>
+angular
+	.module('BeerModule', [])
+	.service('BeerService', function() {
+		this.getBeer = function() {
+			return "Beer !";
+		}
+	});
+						</code></pre>
+
+						<div class="fragment fade-in">
+							<h4>Module with dependencies</h4>
+
+							<pre><code data-trim contenteditable ng-non-bindable>
+angular
+	.module('App', ['BeerModule'])
+	.controller('someController', ['$scope', 'BeerService',
+	function($scope, BeerService) {
+		$scope.giveBeer = function() {
+			alert( BeerService.getBeer() );
+		}
+	}]);
+							</code></pre>
+
+							<pre><code data-trim contenteditable ng-non-bindable>
+&lt;div ng-app="App" data-ng-controller="someController"&gt;
+	&lt;button ng-click="giveBeer()"&gt;Bring me a beer !&lt;/button&gt;
+&lt;/div&gt;
+							</pre></code>							
+						</div>
+
+						<div class="fragment fade-in">
+							<div ng-controller="someController">
+								<button class="btn" ng-click="getBeer();">Bring me a beer !</button>
+							</div>
+						</div>
+					</section>
+				</section>
+
+				<section class="text-left">
+					<h3>Key Features</h3>
+					<p>
+						<ul>
+							<li>Two-way data-binding</li>
+							<li>Filter</li>
+							<li>Controller</li>
+							<li>Service & Factory</li>
+							<li>Dependency Injection</li>
+							<li>Directive</li>
+							<li>Partial Views</li>
+						</ul>
+					</p>
+
+					<aside class="notes">
+				        AngularJS' two-way data binding is its most notable feature, and it reduces the complexity of code; with relief to the server backend of templating responsibilities.
+						Instead, templates are rendered in plain HTML according to data contained in a scope defined in the model.
+						The $scope service in Angular detects changes to the model section and modifies HTML expressions in the view via a controller. Likewise, any alterations to the view are reflected in the model. This circumvents the need to actively manipulate the DOM and encourages bootstrapping and rapid prototyping of web applications.[8] AngularJS detects changes in models by comparing the current values with values stored earlier in a process of dirty-checking, unlike Ember.js and Backbone.js that trigger listeners when the model values are changed.
+				    </aside>
+				</section>
+
+				<section>
+					<section>
+						<h3>Two-way data-binding</h3>
+						<p>Automatic synchronization between models and views.</p>
+
+						<h5>Example</h5>
+						<pre><code data-trim contenteditable ng-non-bindable>
+&lt;div&gt;
+	&lt;input type=&quot;text&quot; data-ng-model=&quot;name&quot; placeholder=&quot;Your name please ?&quot;&gt;
+	&lt;h5&gt;Hello {{ name }}!&lt;/h5&gt;
+&lt;/div&gt;
+						</code></pre>
+						<div class="live-example fragment fade-in">
+						    <input type="text" data-ng-model="name" placeholder="Your name please ?" class="text-center">
+						    <p>Hello {{ name }} !</p>
+						</div>
+					</section>
+
+					<section>
+						<h3>How it works ?</h3>
+
+						<p class="fragment fade-in text-center">
+							<img width="750px" src="./img/databinding.png" class="no-wrap">
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Filter</h3>
+						<p>Manipulate how your expressions are displayed.</p>
+
+						<pre><code data-trim ng-non-bindable>
+&lt;div ng-init="heroes = [
+	{ name: 'Axe', type: 'str'},
+	{ name: 'Sven', type: 'str'}
+	{ name: 'Drow Ranger', type: 'agi'},
+	{ name: 'Lich', type: 'int'}
+]"&gt;
+&lt;/div&gt;
+&lt;div
+	&lt;input type="text" ng-model="searchText.type"&gt;
+	&lt;ul&gt;
+		&lt;li ng-repeat="hero in heroes | filter:searchText"&gt;{{ hero.name }}&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+						</code></pre>
+
+						<div class="live-example fragment fade-in">
+							<div ng-init="heroes = [
+								{ name: 'Axe', type: 'str'},
+								{ name: 'Sven', type: 'str'},
+								{ name: 'Drow Ranger', type: 'agi'},
+								{ name: 'Lich', type: 'int'}
+							]"></div>
+								<input type="text" ng-model="searchText.type" placeholder="filter hero by type" class="text-center">
+							<div class="result">
+								<ul class="list">
+									<li ng-repeat="hero in heroes | filter:searchText">
+										{{ hero.name }}
+									</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Controller</h3>
+
+						<p>Main logic handler for your application, watch model changes or register services, forget about DOM manipulation.</p>
+
+						<p>&nbsp;</p>
+					</section>
+					<section>
+						<h3>Declaration</h3>
+
+						<pre><code data-trim ng-non-bindable>
+<!-- Example controller.js -->
+App.controller('ctrlName', function ($scope, [, dependencies]) {
+	// your logic here
+});
+						</code></pre>
+						<pre><code data-trim ng-non-bindable>
+<!-- Example view.html -->
+&lt;div ng-controller="ctrlName"&gt;
+	// do your stuff here
+&lt;/div&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h3>Example</h3>
+
+						<pre><code data-trim ng-non-bindable>
+App.controller('ctrlName', function ($scope) {
+	$scope.count = 1;
+	$scope.message = '';
+
+	$scope.moreBeer = function() {
+		$scope.count += 1;
+
+		if ( $scope.count >= 5 && $scope.count < 10)
+			$scope.message ="Too much beer !";
+
+		if ( $scope.count >= 10 )
+			$scope.message = "STAAAAHHHP !!!!";
+	}
+});
+						</code></pre>
+						<pre><code data-trim ng-non-bindable>
+&lt;div ng-controller="ctrlName"&gt;
+	Beer count : {{ count }} &lt;button ng-click="moreBeer()"&gt;I want more !&lt;/button&gt;
+&lt;/div&gt;
+						</code></pre>
+
+						<div ng-controller="ctrlName" class="fragment fade-in">
+							<p>Beer count : {{ count }}</p>
+							<p class="small">{{ message }}</p>
+							<button class="btn" ng-click="moreBeer()">I want more !</button>
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Factory</h3>
+						<p>allow us to retrieving values or calling another service and return as an object.</p>
+
+						<blockquote class="small">
+							"When you’re using a Factory you create an object, add properties to it, then return that same object. When you pass this service into your controller, those properties on the object will now be available in that controller through your factory."
+						</blockquote>
+					</section>
+
+					<section>
+						<h3>Factory Declaration</h3>
+						<pre><code data-trim ng-non-bindable>
+App.factory('BeerFactory', function() {
+	return "I'm from BeerFactory";
+});
+						</code></pre>
+
+						<p>...or expose something a bit more</p>
+
+						<pre><code data-trim ng-non-bindable>
+App.factory('BeerFactory', function() {
+	return {
+		name  : "beer name",
+		price : "1000"
+	}
+});
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Service</h3>
+
+						<p>quite similar to Factory, except it’s instantiated with the ‘new’ keyword and returned as the service itself a.k.a `this`.</p>
+					</section>
+
+					<section>
+						<h3>Service Declaration</h3>
+						<pre><code data-trim ng-non-bindable>
+App.service('ServiceName', function() {
+	this.method = function() {
+		return "something";
+	}
+});
+						</code></pre>
+
+						<p>another example with multiple function inside service</p>
+
+						<pre><code data-trim ng-non-bindable>
+App.service('ServiceName', function() {
+	this.method = function() {
+		return "something";
+	}
+	this.anotherMethod = function() {
+		return "something from another method";
+	}
+});
+						</code></pre>
+
+						<blockquote>A service is a singleton to an object.</blockquote>
+					</section>
+
+					<section ng-controller="serviceController">
+						<h3>Example</h3>
+						<pre><code data-trim ng-non-bindable>
+App.service('BeerService', function() {
+	this.sayBeer = function() {
+		return "Beer!";
+	}
+	this.sayHello = function() {
+		return "Hello";
+	}
+	this.sayBoth = function() {
+		return this.sayHello() + ' ' + this.sayBeer(); // returns "Hello Beer!";
+	}
+});
+						</code></pre>
+						<pre><code data-trim ng-non-bindable>
+App.controller('serviceController', function($scope, BeerService) {
+	$scope.sayBeer = function() {
+		alert( BeerService.sayBeer() );
+	}
+	$scope.sayHello = function() {
+		alert( BeerService.sayHello() );
+	}
+
+	$scope.sayBoth = function() {
+		alert( BeerService.sayBoth() );
+	}
+});
+						</code></pre>
+						<pre><code data-trim ng-non-bindable>
+<button class="btn" ng-click="sayBeer();">Say Hello</button>
+<button class="btn" ng-click="sayHello();">Say Beer!</button>
+<button class="btn" ng-click="sayBoth();">Say both</button>
+						</code></pre>
+						<button class="btn" ng-click="sayHello();">Say Hello</button>
+						<button class="btn" ng-click="sayBeer();">Say Beer!</button>
+						<button class="btn" ng-click="sayBoth();">Say both</button>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Dependency Injection</h3>
+
+						<p>The Angular injector subsystem is in charge of creating components, resolving their dependencies, and providing them to other components as requested.</p>
+
+					</section>
+					<section>
+
+						<h3>Dependency Injection Example</h3>
+
+						<pre><code data-trim ng-non-bindable>
+App.controller('demoCtrl', function($scope, BeerService) {
+	// $scope, BeerService now accessible here.
+});
+						</code></pre>
+
+						<blockquote class="fragment fade-in">Dude, minification breaks my application, WTF !?</blockquote>
+
+						<div class="fragment fade-in">
+							<p>we need angular dependency annotation, so that the injector knows what services to inject into the function.</p>
+							<pre><code data-trim ng-non-bindable>
+App.controller('demoCtrl', ['$scope', 'BeerService',
+function(a, b) {
+	// a is $scope
+	// and b is BeerService since we already annotated them.
+}]);
+							</code></pre>
+							<p>Here we pass an array whose elements consist of a list of strings (the names of the dependencies) followed by the function itself.</p>
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<h3>Directive</h3>
+				</section>
+
+				<section>
+					<h3>Partial Views</h3>
+				</section>
+
+				<section>
+					<img class="no-wrap" width="500px" src="./img/54532465.jpg">
+				</section>
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="./js/app.js"></script>
+
+		<script src="/bower_components/reveal.js/lib/js/head.min.js"></script>
+		<script src="/bower_components/reveal.js/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '/bower_components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/bower_components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/bower_components/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() {
+						hljs.configure({
+							tabReplace: '    ',
+						});
+						hljs.initHighlightingOnLoad();
+
+					} },
+					{ src: '/bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true },
+					{ src: '/bower_components/reveal.js/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+	</body>
+</html>
