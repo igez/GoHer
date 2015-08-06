@@ -55,6 +55,17 @@
 
 				<section class="text-left">
 					<h3>Philosophy</h3>
+
+                    <aside class="notes">
+						AngularJS is built around the belief that declarative programming should be used for building user interfaces and connecting software components, while imperative programming is better suited to defining an application's business logic.[2] The framework adapts and extends traditional HTML to present dynamic content through two-way data-binding that allows for the automatic synchronization of models and views. As a result, AngularJS de-emphasizes explicit DOM manipulation with the goal of improving testability and performance.
+
+                        AngularJS's design goals include:
+
+                        -to decouple DOM manipulation from application logic. The difficulty of this is dramatically affected by the way the code is structured.
+                        -to decouple the client side of an application from the server side. This allows development work to progress in parallel, and allows for reuse of both sides.
+                        -to provide structure for the journey of building an application: from designing the UI, through writing the business logic, to testing.
+                        Angular implements the MVC pattern to separate presentation, data, and logic components. Using dependency injection, Angular brings traditionally server-side services, such as view-dependent controllers, to client-side web applications. Consequently, much of the burden on the server can be reduced.
+					</aside>
 				</section>
 
 				<section>
@@ -179,7 +190,7 @@ angular
 &lt;div ng-app="App" data-ng-controller="someController"&gt;
 	&lt;button ng-click="giveBeer()"&gt;Bring me a beer !&lt;/button&gt;
 &lt;/div&gt;
-							</pre></code>							
+							</pre></code>
 						</div>
 
 						<div class="fragment fade-in">
@@ -322,7 +333,9 @@ App.controller('ctrlName', function ($scope) {
 						</code></pre>
 						<pre><code data-trim ng-non-bindable>
 &lt;div ng-controller="ctrlName"&gt;
-	Beer count : {{ count }} &lt;button ng-click="moreBeer()"&gt;I want more !&lt;/button&gt;
+	Beer count : {{ count }}
+    &lt;p class="small"&gt;{{ message }}&lt;/p&gt;
+    &lt;button ng-click="moreBeer()"&gt;I want more !&lt;/button&gt;
 &lt;/div&gt;
 						</code></pre>
 
@@ -472,11 +485,100 @@ function(a, b) {
 				</section>
 
 				<section>
-					<h3>Directive</h3>
+                    <section>
+                        <h3>Directive</h3>
+                        <p>At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler to attach a specified behavior to that DOM element or even transform the DOM element and its children.</p>
+
+                    </section>
+                    <section>
+                        <h3>Directive</h3>
+                        <p>Angular comes with a set of these directives built-in, like:</p>
+
+                        <p>
+                            <ul>
+                                <li class="fragment fade-in">
+                                    ngModel
+                                </li>
+                                <li class="fragment fade-in">
+                                    ngView
+                                </li>
+                                <li class="fragment fade-in">
+                                    ngBind
+                                </li>
+                                <li class="fragment fade-in">
+                                    And many more...
+                                </li>
+                            </ul>
+                        </p>
+                        <p class="fragment fade-in">
+                            Much like you create controllers and services, you can create your own directives for Angular to use. When Angular bootstraps your application, the HTML compiler traverses the DOM matching directives against the DOM elements.
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Directive Types</h3>
+                        <p>All of the Angular-provided directives match attribute name, tag name, comments, or class name. The following demonstrates the various ways a directive (beerDir in this case) can be referenced from within a template:</p>
+                        <pre><code data-trim ng-non-bindable>
+&lt;beer-dir&gt;&lt;/beer-dir&gt;
+&lt;span data-beer-dir="exp"&gt;&lt;/span&gt;
+&lt;!-- directive: beer-dir exp --&gt;
+&lt;span class="beer-dir: exp;"&gt;&lt;/span&gt;
+                        </code></pre>
+                        <p class="fragment fade-in">
+                            See how Angular normalize the directive name? The normalization process is as follows:
+                            <ol class="fragment fade-in">
+                                <li>Strip x- and data- from the front of the element/attributes.</li>
+                                <li>Convert the :, -, or _-delimited name to camelCase.</li>
+                            </ol>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Directive Example</h3>
+                        <pre><code data-trim ng-non-bindable>
+App.directive('beerDir', function() {
+  return {
+    template: 'This beer is not so bad ;)'
+  };
+});
+						</code></pre>
+                        <pre><code data-trim ng-non-bindable>
+&lt;beer-dir&gt;&lt;/beer-dir&gt;
+						</code></pre>
+                        <beer-dir></beer-dir>
+                    </section>
+                    <section>
+                        <h3>More Directive Example</h3>
+                        <pre><code data-trim ng-non-bindable>
+App.controller('beerController', ['$scope', function($scope) {
+  $scope.myBeerCollection = [
+    { name: 'Carlsberg', grade: 'good'},
+    { name: 'Bintang', grade: 'great'},
+    { name: 'Guinness', grade: 'not my taste'}];
+}])
+.directive('myBeer', function() {
+  return {
+    controller: 'beerController',
+    restrict: 'E', // 'A' = attribute, 'E' = element, 'C' = class
+    templateUrl: 'includes/my-beer.html'
+  };
+});
+						</code></pre>
+                        <pre>includes/my-beer.html<code data-trim ng-non-bindable>
+&lt;ul class="list"&gt;
+    &lt;li ng-repeat="beer in myBeerCollection"&gt;
+        {{ beer.name }} is {{ beer.grade }}
+    &lt;/li&gt;
+&lt;/ul&gt;
+						</code></pre>
+                        <pre><code data-trim ng-non-bindable>
+&lt;my-beer&gt;&lt;/my-beer&gt;
+						</code></pre>
+                        <my-beer></my-beer>
+                    </section>
 				</section>
 
 				<section>
 					<h3>Partial Views</h3>
+                    <p></p>
 				</section>
 
 				<section>

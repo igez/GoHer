@@ -52,4 +52,24 @@ App.controller('someController', function($scope, BeerService) {
 	}
 });
 
+App.directive('beerDir', function() {
+  return {
+    template: 'This beer is not so bad ;)'
+  };
+});
+
+App.controller('beerController', ['$scope', function($scope) {
+  $scope.myBeerCollection = [
+    { name: 'Carlsberg', grade: 'good'},
+    { name: 'Bintang', grade: 'great'},
+    { name: 'Guinness', grade: 'not my taste'}
+  ];
+}])
+.directive('myBeer', function() {
+  return {
+    controller: 'beerController',
+    restrict: 'E',
+    templateUrl: 'includes/my-beer.html'
+  };
+});
 })();
