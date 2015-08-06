@@ -211,7 +211,7 @@ angular
 							<li>Service & Factory</li>
 							<li>Dependency Injection</li>
 							<li>Directive</li>
-							<li>Partial Views</li>
+							<li>Routing & Partial Views</li>
 						</ul>
 					</p>
 
@@ -577,9 +577,106 @@ App.controller('beerController', ['$scope', function($scope) {
 				</section>
 
 				<section>
-					<h3>Partial Views</h3>
-                    <p></p>
-				</section>
+                    <section>
+                        <h3>Routing & Partial Views</h3>
+                        <p>With AngularJS we can turn the index.html template into what we call a "layout template". This is a template that is common for all views in our application. Other "partial templates" are then included into this layout template depending on the current "route" — the view that is currently displayed to the user.</p>
+				    </section>
+                    <section>
+                        <h3>Routing & Partial Views Example</h3>
+                        <pre>app.js<code data-trim ng-non-bindable>
+App.config(['$routeProvider', function($routeProvider){
+    $routeProvider
+    .when('/', {
+        templateUrl: 'views/home.html'
+    })
+    .when('/todo', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+    })
+    .when('/about', {
+        templateUrl: 'views/about.html'
+    })
+    .otherwise({
+        redirectTo: '/'
+    });
+}])
+.controller('MainCtrl', function ($scope, localStorageService) {
+
+    var todosInStore = localStorageService.get('todos');
+
+    $scope.todos = todosInStore || [];
+
+    $scope.$watch('todos', function () {
+      localStorageService.add('todos', $scope.todos);
+    }, true);
+
+    $scope.addTodo = function () {
+      if($.inArray($scope.todo, $scope.todos) == -1){
+        $scope.todos.push($scope.todo);
+      }
+
+      $scope.todo = '';
+    };
+    $scope.removeTodo = function (index) {
+      $scope.todos.splice(index, 1);
+    };
+  });
+						</code></pre>
+                    </section>
+                    <section>
+                        <h3>Routing & Partial Views Example</h3>
+                        <pre>views/home.html<code data-trim ng-non-bindable>
+&lt;div class="jumbotron"&gt;&lt;h1&gt;Hello World!&lt;/h1&gt;&lt;/div&gt;
+						</code></pre>
+                        <pre>views/about.html<code data-trim ng-non-bindable>
+&lt;div class="jumbotron"&gt;&lt;h1&gt;This is about beer.&lt;/h1&gt;&lt;/div&gt;
+						</code></pre>
+                        <pre>views/main.html<code data-trim ng-non-bindable>
+<div class="container">
+  <h2>My todos</h2>
+
+  <!-- Todos input -->
+  <form role="form" ng-submit="addTodo()">
+    <div class="row">
+      <div class="input-group">
+        <input type="text" ng-model="todo" placeholder="What needs to be done?" class="form-control">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Add">
+        </span>
+      </div>
+    </div>
+  </form>
+  <p></p>
+
+  <!-- Todos list -->
+  <div ui-sortable ng-model="todos">
+    <p class="input-group" ng-repeat="todo in todos" style="padding:5px 10px; cursor: move;">
+      <input readonly type="text" ng-model="todo" class="form-control" >
+      <span class="input-group-btn">
+        <button class="btn btn-danger" ng-click="removeTodo($index)" aria-label="Remove">X</button>
+      </span>
+    </p>
+  </div>
+
+</div>
+
+						</code></pre>
+                    </section>
+                    <section>
+                        <h3>Routing & Partial Views Example</h3>
+                        <pre>index.html<code data-trim ng-non-bindable>
+<div class="collapse navbar-collapse" id="js-navbar-collapse">
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="#/">Home</a></li>
+        <li><a ng-href="#/todo">To-do</a></li>
+        <li><a ng-href="#/about">About</a></li>
+    </ul>
+</div>
+<ng-view></ng-view>
+						</code></pre>
+                        <a href="../v.2/app/#/" target="_blank">See the example.</a>
+                    </section>
+                </section>
 
 				<section>
 					<img class="no-wrap" width="500px" src="./img/54532465.jpg">

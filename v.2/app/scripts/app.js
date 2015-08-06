@@ -8,12 +8,17 @@ angular.module('mytodoApp', [
   'ui.sortable',
   'LocalStorageModule'
 ])
-  .config(['localStorageServiceProvider', '$routeProvider', function(localStorageServiceProvider, $routeProvider){
-    localStorageServiceProvider.setPrefix('ls');
+  .config(['$routeProvider', function($routeProvider){
     $routeProvider
       .when('/', {
+        templateUrl: 'views/home.html'
+      })
+      .when('/todo', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html'
       })
       .otherwise({
         redirectTo: '/'

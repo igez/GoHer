@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <title>To Do Apps</title>
+    <title>Example Beer</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -36,23 +36,21 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/">Todo Apps</a>
+            <a class="navbar-brand" href="#/"></a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/">Dummy</a></li>
-              <li><a ng-href="#/">Menu</a></li>
-              <li><a ng-href="#/">Content</a></li>
+              <li><a ng-href="#/todo">To-do</a></li>
+              <li><a ng-href="#/about">About</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="container" ng-view=""></div>
+    <ng-view></ng-view>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>

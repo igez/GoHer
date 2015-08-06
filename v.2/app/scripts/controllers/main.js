@@ -11,9 +11,6 @@ angular.module('mytodoApp')
       localStorageService.add('todos', $scope.todos);
     }, true);
 
-    // Uncomment if you are disabling persistence
-    //$scope.todos = [];
-
     $scope.addTodo = function () {
       if($.inArray($scope.todo, $scope.todos) == -1){
         $scope.todos.push($scope.todo);
