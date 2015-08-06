@@ -487,11 +487,11 @@ function(a, b) {
 				<section>
                     <section>
                         <h3>Directive</h3>
-                        <p>At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler to attach a specified behavior to that DOM element or even transform the DOM element and its children.</p>
-
+                        <p>Agular directives are markers on a DOM element which attach a special behavior to it.</p>
                     </section>
                     <section>
                         <h3>Directive</h3>
+                        <p>At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler to attach a specified behavior to that DOM element or even transform the DOM element and its children.</p>
                         <p>Angular comes with a set of these directives built-in, like:</p>
 
                         <p>
@@ -510,9 +510,9 @@ function(a, b) {
                                 </li>
                             </ul>
                         </p>
-                        <p class="fragment fade-in">
+                        <aside class="notes">
                             Much like you create controllers and services, you can create your own directives for Angular to use. When Angular bootstraps your application, the HTML compiler traverses the DOM matching directives against the DOM elements.
-                        </p>
+                        </aside>
                     </section>
                     <section>
                         <h3>Directive Types</h3>
@@ -579,11 +579,12 @@ App.controller('beerController', ['$scope', function($scope) {
 				<section>
                     <section>
                         <h3>Routing & Partial Views</h3>
-                        <p>With AngularJS we can turn the index.html template into what we call a "layout template". This is a template that is common for all views in our application. Other "partial templates" are then included into this layout template depending on the current "route" — the view that is currently displayed to the user.</p>
-				    </section>
+                        <p>Angular let you slice your view template into a smaller and managable piece.</p>
+                    </section>
                     <section>
                         <h3>Routing & Partial Views Example</h3>
-                        <pre>app.js<code data-trim ng-non-bindable>
+                        <p>With AngularJS we can turn the index.html template into what we call a "layout template". This is a template that is common for all views in Angular application. Other "partial templates" are then included into this layout template depending on the current "route" — the view that is currently displayed to the user.</p>
+				        <pre>app.js<code data-trim ng-non-bindable>
 App.config(['$routeProvider', function($routeProvider){
     $routeProvider
     .when('/', {
