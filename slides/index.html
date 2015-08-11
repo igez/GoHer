@@ -54,22 +54,27 @@
 				</section>
 
 				<section class="text-left">
-					<h3>Philosophy</h3>
+					<div class="col-md-12">
+						<h3>History</h3>
 
+						<ul style="font-size: 80%;">
+							<li>Original developed by Misko Hevery and Adam Abrons in 2009.</li>
+							<li>Adam Abrons officially abandoned the project.</li>
+							<li>Hevery began to work with Google.</li>
+							<li>Maintained by Google ever since.</li>
+						</ul>
+					</div>
+					
                     <aside class="notes">
-						AngularJS is built around the belief that declarative programming should be used for building user interfaces and connecting software components, while imperative programming is better suited to defining an application's business logic.[2] The framework adapts and extends traditional HTML to present dynamic content through two-way data-binding that allows for the automatic synchronization of models and views. As a result, AngularJS de-emphasizes explicit DOM manipulation with the goal of improving testability and performance.
-
-                        AngularJS's design goals include:
-
-                        -to decouple DOM manipulation from application logic. The difficulty of this is dramatically affected by the way the code is structured.
-                        -to decouple the client side of an application from the server side. This allows development work to progress in parallel, and allows for reuse of both sides.
-                        -to provide structure for the journey of building an application: from designing the UI, through writing the business logic, to testing.
-                        Angular implements the MVC pattern to separate presentation, data, and logic components. Using dependency injection, Angular brings traditionally server-side services, such as view-dependent controllers, to client-side web applications. Consequently, much of the burden on the server can be reduced.
+						Misko Hevery and Adam Abrons memulai project di tahun 2009, it was called GetAngular.
+						Adam Abrons left the project.
+						Hevery start working on Google Feedback, and decide to change rewrite the whole app using GetAngular.
+						Hevery dan manager nya Brad Green, convert the original GetAngular project into AngularJS, they created a team to create and maintain the project within Google.
 					</aside>
 				</section>
 
 				<section>
-					<h3>Wait, but aren't we have enough JS framework already ?</h3>
+					<h3>Wait, but don't we have enough JS framework already ?</h3>
 
 					<p class="fragment fade-in text-center">
 						<img class="no-wrap" width="400px" src="./img/1206442.jpg">
@@ -78,10 +83,29 @@
 					<aside class="notes">
 						Ember, React, Backbone, Knockout and there any other framework out there that I can't even remember their name.
 						Each of them has different features and design patterns.
-						They have their on pros and cons.
+						They have their own pros and cons.
 						Each of them claimed to be the holy-grail of JS framework.
 						Is AngularJS is the holy-grail of JS framework ?
+
+						+goal is to make developer's life easier.
 					</aside>
+				</section>
+
+				<section class="text-left">
+					<h3>What is AngularJS</h3>
+					<p>
+						<ul>
+							<li class="fragment fade-in">
+								Client-side JS Framework for SPA.
+							</li>
+							<li class="fragment fade-in">
+								MVC, MVVM, MV*, MVW Framework.
+							</li>
+							<li class="fragment fade-in">
+								Your application UI & UX on  Steroids.
+							</li>
+						</ul>
+					</p>
 				</section>
 
 				<section class="text-left">
@@ -110,6 +134,10 @@
 						5. there are no ng-repeat, ng-show syntax in HTML, but angular teachs browser how handle those syntax.
 						6. No need to create a custom event/data listeners like we used to do using jQuery, angular already handle it automatically.
 					</aside>
+				</section>
+
+				<section>
+					<img class="no-wrap" width="500px" src="./img/pdjmf.jpg"></img>
 				</section>
 
 				<section>
@@ -238,6 +266,10 @@ angular
 						    <input type="text" data-ng-model="name" placeholder="Your name please ?" class="text-center">
 						    <p>Hello {{ name }} !</p>
 						</div>
+					</section>
+
+					<section data-background="#000">
+						<img class="no-wrap" width="100%" src="./img/src.jpg"></img>
 					</section>
 
 					<section>
@@ -680,7 +712,12 @@ App.config(['$routeProvider', function($routeProvider){
                 </section>
 
 				<section>
-					<img class="no-wrap" width="500px" src="./img/54532465.jpg">
+					<section data-background="#333">
+						<img class="no-wrap" width="500px" src="./img/54532465.jpg">	
+					</section>
+					<section data-background="#333">
+						<img class="no-wrap" src="./img/bf6ce3580b3ad0d02bcdc71439ccf88affc2cde1464424d423e376eb93b66746.jpg">
+					</section>
 				</section>
 			</div>
 
